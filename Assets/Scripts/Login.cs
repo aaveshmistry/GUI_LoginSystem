@@ -27,13 +27,13 @@ public class Login : MonoBehaviour
     private string user;
 
 
-    IEnumerator CreateUser(string username, string password, string email)
+    IEnumerator CreateUser(string _username, string _password, string _email)
     {
         string createUserURL = "http://localhost/nsirpg/InsertUser.php";
         WWWForm form = new WWWForm();
-        form.AddField("username", username);
-        form.AddField("password", password);
-        form.AddField("email", email);
+        form.AddField("username", _username);
+        form.AddField("password", _password);
+        form.AddField("email", _email);
         UnityWebRequest webRequest = UnityWebRequest.Post(createUserURL, form);
         yield return webRequest.SendWebRequest();
         Debug.Log("webRequest");
@@ -120,6 +120,11 @@ public class Login : MonoBehaviour
 
         }
     }  
+
+    public void LoginExistingUser()
+    {
+        StartCoroutine(CreateNewLogin(username.text, password.text));
+    }
 
     public void CheckEmail(InputField email)
     {
