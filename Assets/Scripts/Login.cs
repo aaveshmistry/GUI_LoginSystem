@@ -21,13 +21,25 @@ public class Login : MonoBehaviour
     public InputField email;
     public InputField updatedPassword;
     public Text loginSuccessful;
-    public int[] number = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    public string[] letters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-    public int randomNum;
-    public int randomLet;
+   // public int[] number = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+   // public string[] letters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+   // public int randomNum;
+   // public int randomLet;
     private string user;
 
+    private string characters = "0123456789abcdefghijklmnopqrstuvwxABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private string code = "";
 
+    void CreateCode()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            int a = UnityEngine.Random.Range(0, characters.Length);
+            code = code + characters[a];
+        }
+
+        Debug.Log(code);
+    }
     IEnumerator CreateUser(string _username, string _password, string _email)
     {
         string createUserURL = "http://localhost/nsirpg/InsertUser.php";
@@ -37,9 +49,8 @@ public class Login : MonoBehaviour
         form.AddField("email", _email);
         UnityWebRequest webRequest = UnityWebRequest.Post(createUserURL, form);
         yield return webRequest.SendWebRequest();
-        Debug.Log("webRequest");
+        Debug.Log(webRequest.downloadHandler.text);
     }
-
     IEnumerator CreateNewLogin(string username, string password)
     {
         string createLoginURL = "http://localhost/nsirpg/Login.php";
@@ -52,34 +63,26 @@ public class Login : MonoBehaviour
 
         if(webRequest.downloadHandler.text == "Login Successful")
         {
-            SceneManager.LoadScene(1);
-            
-        }
-        else
-        {
-           
+            SceneManager.LoadScene(1);            
         }
     }
-
     public void CreateNewUser()
     {
         StartCoroutine(CreateUser(username.text, password.text, email.text ) );
     }
-
     public void CreateNewLogin()
     {
         StartCoroutine(CreateNewLogin(username.text, password.text));
     }
-
-   void SendEmail(InputField email)
+    void SendEmail(InputField email)
     {
-        RandomCodeCGenerator();
+        CreateCode();
         Debug.Log(email.text);
         MailMessage mail = new MailMessage();
         mail.From = new MailAddress("sqlunityclasssydney@gmail.com");
         mail.To.Add(email.text);
         mail.Subject = "NSIRPG Password Reset";
-        mail.Body = "Hello " + user + "\nReset using this code:" + randomLet;
+        mail.Body = "Hello " + user + "\nReset using this code: " + code;
 
         // connect to google
         SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
@@ -94,13 +97,8 @@ public class Login : MonoBehaviour
         //Send message
         smtpServer.Send(mail);
         Debug.Log("Sending Email....");
+        //HERE
     }
-
-    void RandomCodeCGenerator()
-    {
-        randomLet = (UnityEngine.Random.Range(0, letters.Length));
-    }
-
     IEnumerator ForgetUser(InputField email)
     {
         string createUserURL = "http://localhost/nsirpg/checkemail.php";
@@ -120,12 +118,11 @@ public class Login : MonoBehaviour
 
         }
     }
-
     IEnumerator UpdatePassword(InputField username, InputField password)
     {
         string createUserURL = "http://localhost/nsirpg/UpdatePassword.php";
         WWWForm form = new WWWForm();
-        form.AddField("username", username.text);
+        form.AddField("username", user);
         form.AddField("password", password.text);
         UnityWebRequest webRequest = UnityWebRequest.Post(createUserURL, form);
         yield return webRequest.SendWebRequest();
@@ -140,19 +137,29 @@ public class Login : MonoBehaviour
         
         }
     }
-
-   public void UpdatedPassword()
+    public void UpdatedPassword()
     {
         StartCoroutine(UpdatePassword(username, password));
     }
-
     public void LoginExistingUser()
     {
         StartCoroutine(CreateNewLogin(username.text, password.text));
     }
-
     public void CheckEmail(InputField email)
     {
         StartCoroutine(ForgetUser(email));
     }
+    //function that turns on a panel that contains an input field and a button  
+    //this function runs at the end of SendEmail where the HERE text is
+
+    //when we input the code and hit the button...the button runs a new function
+    //Function checks if inputfield.text == code if yes it changes Panel to the Password Update Panel
+
+    //when both new and check password fields are the same and not empty...submit button is on else its off
+    //Submit button has a function that is on the button
+    //public void updatepassword
+
+    //this runs the IEnumerator password update
+    //this requires password.text from a field and the user 
+
 }
