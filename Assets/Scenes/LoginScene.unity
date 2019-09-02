@@ -579,7 +579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 9}
+  m_AnchoredPosition: {x: 1, y: 17}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &188439100
@@ -961,6 +961,7 @@ MonoBehaviour:
   username: {fileID: 90391286}
   password: {fileID: 647741287}
   email: {fileID: 801787574}
+  updatedPassword: {fileID: 188439100}
   loginSuccessful: {fileID: 1905479482}
   number: 00000000010000000200000003000000040000000500000006000000070000000800000009000000
   letters:
@@ -1297,6 +1298,7 @@ MonoBehaviour:
   username: {fileID: 1868305674}
   password: {fileID: 107773669}
   email: {fileID: 977384648}
+  updatedPassword: {fileID: 0}
   loginSuccessful: {fileID: 0}
   number: 00000000010000000200000003000000040000000500000006000000070000000800000009000000
   letters:
@@ -1609,7 +1611,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Check Email
+  m_Text: Send Email
 --- !u!222 &558626344
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1772,7 +1774,7 @@ GameObject:
   - component: {fileID: 747638528}
   - component: {fileID: 747638527}
   m_Layer: 5
-  m_Name: CheckEmail
+  m_Name: SendEmail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3546,7 +3548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4, y: 1.3}
+  m_AnchoredPosition: {x: 0.4, y: 2.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1692889652

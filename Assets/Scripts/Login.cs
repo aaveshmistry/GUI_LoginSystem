@@ -19,6 +19,7 @@ public class Login : MonoBehaviour
     public InputField username;
     public InputField password;
     public InputField email;
+    public InputField updatedPassword;
     public Text loginSuccessful;
     public int[] number = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     public string[] letters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
@@ -52,7 +53,7 @@ public class Login : MonoBehaviour
         if(webRequest.downloadHandler.text == "Login Successful")
         {
             SceneManager.LoadScene(1);
-
+            
         }
         else
         {
@@ -95,7 +96,6 @@ public class Login : MonoBehaviour
         Debug.Log("Sending Email....");
     }
 
-
     void RandomCodeCGenerator()
     {
         randomLet = (UnityEngine.Random.Range(0, letters.Length));
@@ -119,7 +119,32 @@ public class Login : MonoBehaviour
             SendEmail(email); 
 
         }
-    }  
+    }
+
+    IEnumerator UpdatePassword(InputField username, InputField password)
+    {
+        string createUserURL = "http://localhost/nsirpg/UpdatePassword.php";
+        WWWForm form = new WWWForm();
+        form.AddField("username", username.text);
+        form.AddField("password", password.text);
+        UnityWebRequest webRequest = UnityWebRequest.Post(createUserURL, form);
+        yield return webRequest.SendWebRequest();
+        Debug.Log(webRequest.downloadHandler.text);
+        if (webRequest.downloadHandler.text == "Password Changed")
+        {
+            Debug.Log(webRequest.downloadHandler.text);
+        }
+        else
+        {
+            user = webRequest.downloadHandler.text;
+        
+        }
+    }
+
+   public void UpdatedPassword()
+    {
+        StartCoroutine(UpdatePassword(username, password));
+    }
 
     public void LoginExistingUser()
     {
