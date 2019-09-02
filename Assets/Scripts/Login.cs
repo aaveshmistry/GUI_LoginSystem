@@ -97,7 +97,8 @@ public class Login : MonoBehaviour
         //Send message
         smtpServer.Send(mail);
         Debug.Log("Sending Email....");
-        //HERE
+        //HERE 
+
     }
     IEnumerator ForgetUser(InputField email)
     {
@@ -150,6 +151,7 @@ public class Login : MonoBehaviour
         StartCoroutine(ForgetUser(email));
     }
     //function that turns on a panel that contains an input field and a button  
+    
     //this function runs at the end of SendEmail where the HERE text is
 
     //when we input the code and hit the button...the button runs a new function
