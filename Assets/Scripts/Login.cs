@@ -53,7 +53,7 @@ public class Login : MonoBehaviour
     }
     IEnumerator CreateNewLogin(string username, string password)
     {
-        string createLoginURL = "http://localhost/nsirpg/Login.php";
+        string createLoginURL = "http://localhost/nsirpg/UserLogin.php";
         WWWForm form = new WWWForm();
         form.AddField("username", username);
         form.AddField("password", password);
@@ -61,10 +61,12 @@ public class Login : MonoBehaviour
         yield return webRequest.SendWebRequest();
         Debug.Log(webRequest.downloadHandler.text);
 
-        if(webRequest.downloadHandler.text == "Login Successful")
+        if(webRequest.downloadHandler.text == "Logged In")
         {
             SceneManager.LoadScene(1);            
         }
+        else if(webRequest.downloadHandler.text == "Incorrect Password") 
+        { Debug.Log("cranky"); }
     }
     public void CreateNewUser()
     {
@@ -102,7 +104,7 @@ public class Login : MonoBehaviour
     }
     IEnumerator ForgetUser(InputField email)
     {
-        string createUserURL = "http://localhost/nsirpg/checkemail.php";
+        string createUserURL = "http://localhost/nsirpg/CheckMail.php";
         WWWForm form = new WWWForm();
         form.AddField("email_Post", email.text);
         UnityWebRequest webRequest = UnityWebRequest.Post(createUserURL, form);
@@ -163,5 +165,4 @@ public class Login : MonoBehaviour
 
     //this runs the IEnumerator password update
     //this requires password.text from a field and the user 
-
 }
