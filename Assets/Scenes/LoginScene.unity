@@ -619,8 +619,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 107773670}
   m_TextComponent: {fileID: 1103539778}
   m_Placeholder: {fileID: 1658623773}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -908,8 +908,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 188439101}
   m_TextComponent: {fileID: 81037464}
   m_Placeholder: {fileID: 1950044605}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -1248,7 +1248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   username: {fileID: 90391286}
-  password: {fileID: 0}
+  password: {fileID: 342234354}
   email: {fileID: 801787574}
   updatedPassword: {fileID: 188439100}
   loginSuccessful: {fileID: 1416936619}
@@ -1491,8 +1491,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 342234355}
   m_TextComponent: {fileID: 1715796336}
   m_Placeholder: {fileID: 1715753952}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -6019,8 +6019,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2093892212}
   m_TextComponent: {fileID: 916697685}
   m_Placeholder: {fileID: 332937043}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
